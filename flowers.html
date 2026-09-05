@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose a Flower 🌸</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 900px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 35px;
+            border-radius: 25px;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        h1 {
+            color: #d6336c;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #777;
+            margin-bottom: 30px;
+        }
+
+        .flowers {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+        }
+
+        .flower-card {
+            background: white;
+            border-radius: 18px;
+            overflow: hidden;
+            cursor: pointer;
+            border: 3px solid transparent;
+            transition: 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .flower-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .flower-card.selected {
+            border-color: #d6336c;
+            transform: scale(1.03);
+        }
+
+        .flower-card img {
+            width: 100%;
+            height: 170px;
+            object-fit: cover;
+        }
+
+        .flower-name {
+            padding: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #444;
+        }
+
+        button {
+            margin-top: 30px;
+            padding: 13px 30px;
+            border: none;
+            border-radius: 30px;
+            background: #d6336c;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #b52557;
+            transform: scale(1.05);
+        }
+
+        #message {
+            margin-top: 15px;
+            color: #d6336c;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>🌸 Choose a Flower</h1>
+    <p class="subtitle">Pick a flower for our special day ❤️</p>
+
+    <div class="flowers">
+
+        <div class="flower-card" onclick="selectFlower(this, 'Rose')">
+            <img src="https://loremflickr.com/600/400/rose">
+            <div class="flower-name">🌹 Rose</div>
+        </div>
+
+        <div class="flower-card" onclick="selectFlower(this, 'Sunflower')">
+            <img src="https://loremflickr.com/600/400/sunflower">
+            <div class="flower-name">🌻 Sunflower</div>
+        </div>
+
+        <div class="flower-card" onclick="selectFlower(this, 'Tulip')">
+            <img src="https://loremflickr.com/600/400/tulip">
+            <div class="flower-name">🌷 Tulip</div>
+        </div>
+
+        <div class="flower-card" onclick="selectFlower(this, 'Lily')">
+            <img src="https://loremflickr.com/600/400/lily-flower">
+            <div class="flower-name">🌸 Lily</div>
+        </div>
+
+        <div class="flower-card" onclick="selectFlower(this, 'Daisy')">
+            <img src="https://loremflickr.com/600/400/daisy">
+            <div class="flower-name">🌼 Daisy</div>
+        </div>
+
+        <div class="flower-card" onclick="selectFlower(this, 'Jasmine')">
+            <img src="https://loremflickr.com/600/400/jasmine-flower">
+            <div class="flower-name">🤍 Jasmine</div>
+        </div>
+
+    </div>
+
+    <p id="message"></p>
+
+    <button onclick="continueNext()">
+        Continue ❤️
+    </button>
+
+</div>
+
+<script>
+
+    let selectedFlower = "";
+
+    function selectFlower(card, flower) {
+
+        document.querySelectorAll(".flower-card").forEach(function(item) {
+            item.classList.remove("selected");
+        });
+
+        card.classList.add("selected");
+
+        selectedFlower = flower;
+
+        document.getElementById("message").innerText =
+            "You selected " + flower + " 🌸";
+    }
+
+    function continueNext() {
+
+        if (selectedFlower === "") {
+
+            alert("Please choose a flower first 🌸");
+            return;
+
+        }
+
+        localStorage.setItem("flower", selectedFlower);
+
+        window.location.href = "dessert.html";
+    }
+
+</script>
+
+</body>
+</html>

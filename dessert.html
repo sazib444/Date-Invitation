@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose a Dessert 🍰</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #ffe0f0, #ffd6a5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 900px;
+            background: rgba(255, 255, 255, 0.96);
+            padding: 35px;
+            border-radius: 25px;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        h1 {
+            color: #e85d8f;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #777;
+            margin-bottom: 30px;
+        }
+
+        .desserts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+        }
+
+        .dessert-card {
+            background: white;
+            border-radius: 18px;
+            overflow: hidden;
+            cursor: pointer;
+            border: 3px solid transparent;
+            transition: 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .dessert-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .dessert-card.selected {
+            border-color: #e85d8f;
+            transform: scale(1.03);
+        }
+
+        .dessert-card img {
+            width: 100%;
+            height: 170px;
+            object-fit: cover;
+        }
+
+        .dessert-name {
+            padding: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #444;
+        }
+
+        button {
+            margin-top: 30px;
+            padding: 13px 30px;
+            border: none;
+            border-radius: 30px;
+            background: #e85d8f;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #d64678;
+            transform: scale(1.05);
+        }
+
+        #message {
+            margin-top: 15px;
+            color: #e85d8f;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>🍰 Choose a Dessert</h1>
+    <p class="subtitle">Something sweet for our special day 💕</p>
+
+    <div class="desserts">
+
+        <div class="dessert-card" onclick="selectDessert(this, 'Chocolate Cake')">
+            <img src="https://loremflickr.com/600/400/chocolate-cake">
+            <div class="dessert-name">🍫 Chocolate Cake</div>
+        </div>
+
+        <div class="dessert-card" onclick="selectDessert(this, 'Ice Cream')">
+            <img src="https://loremflickr.com/600/400/ice-cream">
+            <div class="dessert-name">🍦 Ice Cream</div>
+        </div>
+
+        <div class="dessert-card" onclick="selectDessert(this, 'Donut')">
+            <img src="https://loremflickr.com/600/400/donut">
+            <div class="dessert-name">🍩 Donut</div>
+        </div>
+
+        <div class="dessert-card" onclick="selectDessert(this, 'Brownie')">
+            <img src="https://loremflickr.com/600/400/brownie">
+            <div class="dessert-name">🍫 Brownie</div>
+        </div>
+
+        <div class="dessert-card" onclick="selectDessert(this, 'Waffle')">
+            <img src="https://loremflickr.com/600/400/waffle">
+            <div class="dessert-name">🧇 Waffle</div>
+        </div>
+
+        <div class="dessert-card" onclick="selectDessert(this, 'Strawberry Cake')">
+            <img src="https://loremflickr.com/600/400/strawberry-cake">
+            <div class="dessert-name">🍓 Strawberry Cake</div>
+        </div>
+
+    </div>
+
+    <p id="message"></p>
+
+    <button onclick="finish()">
+        Finish ❤️
+    </button>
+
+</div>
+
+<script>
+
+    let selectedDessert = "";
+
+    function selectDessert(card, dessert) {
+
+        document.querySelectorAll(".dessert-card").forEach(function(item) {
+            item.classList.remove("selected");
+        });
+
+        card.classList.add("selected");
+
+        selectedDessert = dessert;
+
+        document.getElementById("message").innerText =
+            "You selected " + dessert + " 🍰";
+    }
+
+    function finish() {
+
+        if (selectedDessert === "") {
+
+            alert("Please choose a dessert first 🍰");
+            return;
+
+        }
+
+        localStorage.setItem("dessert", selectedDessert);
+
+        window.location.href = "congrats.html";
+    }
+
+</script>
+
+</body>
+</html>
