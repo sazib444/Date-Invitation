@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Choose Food 🍜</title>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+
+            min-height: 100vh;
+
+            font-family: Arial, sans-serif;
+
+            padding: 40px 15px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #fff0f5,
+                    #ffd1df
+                );
+
+        }
+
+
+        .container {
+
+            width: 100%;
+
+            max-width: 1100px;
+
+            margin: auto;
+
+            text-align: center;
+
+        }
+
+
+        .icon {
+
+            font-size: 55px;
+
+        }
+
+
+        .step {
+
+            margin-top: 10px;
+
+            color: #e91e63;
+
+            font-size: 14px;
+
+            font-weight: bold;
+
+            letter-spacing: 3px;
+
+        }
+
+
+        h1 {
+
+            margin-top: 10px;
+
+            color: #333;
+
+            font-size: 35px;
+
+        }
+
+
+        .subtitle {
+
+            margin-top: 10px;
+
+            color: #777;
+
+            font-size: 17px;
+
+        }
+
+
+        /* Food Grid */
+
+        .food-grid {
+
+            margin-top: 35px;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(
+                    auto-fit,
+                    minmax(250px, 1fr)
+                );
+
+            gap: 25px;
+
+        }
+
+
+        .food-card {
+
+            background: white;
+
+            border-radius: 22px;
+
+            overflow: hidden;
+
+            cursor: pointer;
+
+            border: 3px solid transparent;
+
+            box-shadow:
+                0 10px 30px rgba(0,0,0,0.12);
+
+            transition: 0.3s;
+
+        }
+
+
+        .food-card:hover {
+
+            transform:
+                translateY(-8px);
+
+        }
+
+
+        .food-card.selected {
+
+            border-color: #e91e63;
+
+            transform:
+                translateY(-6px);
+
+            box-shadow:
+                0 15px 35px
+                rgba(233,30,99,0.25);
+
+        }
+
+
+        .food-card img {
+
+            width: 100%;
+
+            height: 190px;
+
+            object-fit: cover;
+
+            display: block;
+
+        }
+
+
+        .food-info {
+
+            padding: 20px;
+
+        }
+
+
+        .food-info h2 {
+
+            color: #333;
+
+        }
+
+
+        .food-info p {
+
+            margin-top: 8px;
+
+            color: #888;
+
+            font-size: 14px;
+
+        }
+
+
+        .select-label {
+
+            display: inline-block;
+
+            margin-top: 15px;
+
+            padding: 8px 18px;
+
+            border-radius: 20px;
+
+            background: #ffe2ec;
+
+            color: #e91e63;
+
+            font-size: 13px;
+
+            font-weight: bold;
+
+        }
+
+
+        .food-card.selected
+        .select-label {
+
+            background: #e91e63;
+
+            color: white;
+
+        }
+
+
+        /* Bottom */
+
+        .bottom {
+
+            margin-top: 35px;
+
+            background: white;
+
+            padding: 25px;
+
+            border-radius: 22px;
+
+            box-shadow:
+                0 10px 30px rgba(0,0,0,0.1);
+
+        }
+
+
+        .selected-text {
+
+            color: #666;
+
+            font-size: 17px;
+
+        }
+
+
+        #selectedFood {
+
+            color: #e91e63;
+
+            font-weight: bold;
+
+        }
+
+
+        .continue-btn {
+
+            margin-top: 18px;
+
+            border: none;
+
+            padding: 15px 35px;
+
+            border-radius: 50px;
+
+            background: #e91e63;
+
+            color: white;
+
+            font-size: 17px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+        }
+
+
+        .continue-btn:hover {
+
+            transform: scale(1.05);
+
+        }
+
+
+        #error {
+
+            margin-top: 12px;
+
+            color: #e91e63;
+
+            font-size: 14px;
+
+        }
+
+
+        @media(max-width:600px) {
+
+            h1 {
+                font-size: 28px;
+            }
+
+            .food-card img {
+                height: 180px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+    <div class="icon">
+        🍽️
+    </div>
+
+
+    <div class="step">
+        STEP 2
+    </div>
+
+
+    <h1>
+        What Should We Eat? 😋
+    </h1>
+
+
+    <p class="subtitle">
+        Choose your favorite food for the date ❤️
+    </p>
+
+
+
+    <div class="food-grid">
+
+
+        <!-- Fuchka -->
+
+        <div class="food-card"
+             onclick="selectFood(this, 'Fuchka')">
+
+            <img
+                src="https://loremflickr.com/600/400/fuchka"
+                alt="Fuchka"
+            >
+
+            <div class="food-info">
+
+                <h2>
+                    Fuchka 🌶️
+                </h2>
+
+                <p>
+                    Spicy Bangladeshi street food
+                </p>
+
+                <span class="select-label">
+                    Select
+                </span>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- Momo -->
+
+        <div class="food-card"
+             onclick="selectFood(this, 'Momos')">
+
+            <img
+                src="https://loremflickr.com/600/400/momos"
+                alt="Momos"
+            >
+
+            <div class="food-info">
+
+                <h2>
+                    Momos 🥟
+                </h2>
+
+                <p>
+                    Steamy and delicious
+                </p>
+
+                <span class="select-label">
+                    Select
+                </span>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- Chotpoti -->
+
+        <div class="food-card"
+             onclick="selectFood(this, 'Chotpoti')">
+
+            <img
+                src="https://loremflickr.com/600/400/chotpoti"
+                alt="Chotpoti"
+            >
+
+            <div class="food-info">
+
+                <h2>
+                    Chotpoti 🌶️
+                </h2>
+
+                <p>
+                    A classic street food
+                </p>
+
+                <span class="select-label">
+                    Select
+                </span>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- Biryani -->
+
+        <div class="food-card"
+             onclick="selectFood(this, 'Biryani')">
+
+            <img
+                src="https://loremflickr.com/600/400/biryani"
+                alt="Biryani"
+            >
+
+            <div class="food-info">
+
+                <h2>
+                    Biryani 🍛
+                </h2>
+
+                <p>
+                    A delicious classic
+                </p>
+
+                <span class="select-label">
+                    Select
+                </span>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- Jhalmuri -->
+
+        <div class="food-card"
+             onclick="selectFood(this, 'Jhalmuri')">
+
+            <img
+                src="https://loremflickr.com/600/400/jhalmuri"
+                alt="Jhalmuri"
+            >
+
+            <div class="food-info">
+
+                <h2>
+                    Jhalmuri 🥜
+                </h2>
+
+                <p>
+                    Spicy and crunchy
+                </p>
+
+                <span class="select-label">
+                    Select
+                </span>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- Pizza -->
+
+        <div class="food-card"
+             onclick="selectFood(this, 'Pizza')">
+
+            <img
+                src="https://loremflickr.com/600/400/pizza"
+                alt="Pizza"
+            >
+
+            <div class="food-info">
+
+                <h2>
+                    Pizza 🍕
+                </h2>
+
+                <p>
+                    A classic favorite
+                </p>
+
+                <span class="select-label">
+                    Select
+                </span>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- Selected food -->
+
+    <div class="bottom">
+
+        <p class="selected-text">
+
+            Selected food:
+
+            <span id="selectedFood">
+                Nothing yet 😋
+            </span>
+
+        </p>
+
+
+        <button
+            class="continue-btn"
+            onclick="continueToCongratulations()"
+        >
+
+            Continue ❤️
+
+        </button>
+
+
+        <div id="error"></div>
+
+    </div>
+
+
+</div>
+
+
+
+<script>
+
+    let selectedFood = "";
+
+
+    function selectFood(card, food) {
+
+
+        // Remove old selection
+
+        document
+            .querySelectorAll(".food-card")
+            .forEach(function(item) {
+
+                item.classList.remove(
+                    "selected"
+                );
+
+            });
+
+
+        // Select current card
+
+        card.classList.add(
+            "selected"
+        );
+
+
+        selectedFood = food;
+
+
+        document.getElementById(
+            "selectedFood"
+        ).innerText =
+            food + " ❤️";
+
+    }
+
+
+
+    function continueToCongratulations() {
+
+
+        const error =
+            document.getElementById("error");
+
+
+        if (selectedFood === "") {
+
+            error.innerText =
+                "Please choose a food first 😋";
+
+            return;
+
+        }
+
+
+        // Save food
+
+        localStorage.setItem(
+            "food",
+            selectedFood
+        );
+
+
+        // Go to final page
+
+        window.location.href =
+            "congrats.html";
+
+    }
+
+</script>
+
+
+</body>
+
+</html>
